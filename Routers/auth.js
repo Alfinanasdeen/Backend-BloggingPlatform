@@ -18,4 +18,14 @@ router.get(
   }
 );
 
+router.get(
+  "/user-only",
+  verifyToken, 
+  authorizeRoles(["user"]), 
+  (req, res) => {
+    console.log("User Info:", req.user);
+    res.status(200).json({ message: "User-only route works!" });
+  }
+);
+
 export default router;
